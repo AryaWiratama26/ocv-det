@@ -6,13 +6,13 @@ camera = cv2.VideoCapture(0)
 def eye_detection(frame):
     grey_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     
-    eyes = eye_ref.detectMultiScale(grey_frame, scaleFactor=1.1)
+    eyes = eye_ref.detectMultiScale(grey_frame, scaleFactor=1.1, minNeighbors=3, minSize=(100,100))
     return eyes
 
 def frame_box(frame):
 
     for x,y,w,h in eye_detection(frame):
-        cv2.rectangle(frame,(x,y),(x + w, y + h), (255, 255, 255), 5)
+        cv2.rectangle(frame,(x,y),(x + w, y + h), (0, 0, 0), 4)
 
 def main():
     
